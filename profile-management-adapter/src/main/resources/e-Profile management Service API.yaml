@@ -1,0 +1,312 @@
+openapi: 3.0.3
+info:
+  title: e-Profile management Service API
+  description: >-
+    This technical specification provides information about how to use the API.
+    The document describes the API in JSON format. The document is for the
+    following audiences, SA's,  Architects and Developers
+  version: 1.0.0
+  contact:
+    name: "profile management Layer"
+    email: "web@ayo.co.za"
+servers:
+  - url: "https://web@ayo.co.za:8443"
+    description: AYO
+    variables:
+      env:
+        description: environment
+        enum:
+          - dev
+          - uat
+          - qa
+          - prod
+        default: dev
+
+security:
+  - bearerAuth: []
+
+paths:
+  /profile/management-service/v1:
+    post:
+      tags:
+        - eprofile
+      operationId: eProfileService"
+      description: >-
+        The profile management
+      parameters:
+        - $ref: '#/components/parameters/XRequestID'
+        - $ref: '#/components/parameters/Authorization'
+        - $ref: '#/components/parameters/XCorrelationID'
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CustomerRegistrationRequest'
+        required: true
+      responses:
+        '200':
+          $ref: '#/components/responses/CustomerRegistrationResponse'
+        '400':
+          $ref: '#/components/responses/400BadRequest'
+        '401':
+          $ref: '#/components/responses/401Unauthorized'
+        '403':
+          $ref: '#/components/responses/403Forbidden'
+        '405':
+          $ref: '#/components/responses/405MethodNotAllowed'
+        '500':
+          $ref: '#/components/responses/500InternalServerError'
+        '503':
+          $ref: '#/components/responses/503ServiceUnavailable'
+        '504':
+          $ref: '#/components/responses/504GatewayTimeout'
+        default:
+          $ref: '#/components/responses/defaultError'
+
+components:
+  securitySchemes:
+    bearerAuth:
+      type: http
+      scheme: bearer
+      bearerFormat: JWT
+
+  schemas:
+    CustomerRegistrationRequest:
+      description: >-
+        This API is the final  response received
+      type: object
+      properties:
+        data:
+          description: "Final response data"
+          type: object
+          required:
+            - registration
+          properties:
+            registration:
+              $ref: '#/components/schemas/registration'
+
+
+    CustomerRegistrationResponse:
+      description: >-
+        This API is the positive response to the received
+      type: object
+      properties:
+        data:
+          type: object
+          properties:
+            registration:
+              $ref: '#/components/schemas/registration'
+        result:
+          $ref: '#/components/schemas/Result'
+
+    registration:
+      type: object
+      properties:
+        surname:
+          type: string
+          maxLength: 20
+          example: "Maganya"
+        name:
+          type: string
+          maxLength: 20
+          example: "Aifheli"
+        pro_code:
+          type: integer
+          minimum: 0
+          maximum: 999999
+          example: "096570"
+        Gender:
+          type: string
+          maxLength: 1
+          example: "M"
+        phone_no:
+          type: string
+          maxLength: 10
+          example: "0000000000"
+        date_of_birth:
+          type: string
+          maxLength: 10
+          example: "12/07/1988"
+        place_of_birth:
+          type: string
+          maxLength: 30
+          example: "Johannesburg"
+        sa_id_no:
+          type: string
+          maxLength: 13
+          example: "3333333333333"
+        foreign_id_no:
+          type: string
+          maxLength: 16
+          example: "2222222222222222"
+        street_address_line:
+          type: string
+          maxLength: 30
+          example: "Johannesburg str"
+        street_suburb:
+          type: string
+          maxLength: 30
+          example: "Johannesburg Four ways"
+        street_city:
+          type: string
+          maxLength: 30
+          example: "Johannesburg Four ways"
+        local_date:
+          type: integer
+          minimum: 0
+          maximum: 999999
+          example: "200324"
+        local_time:
+          type: integer
+          minimum: 0
+          maximum: 999999
+          example: "85908"
+        capt_date:
+          type: integer
+          minimum: 0
+          maximum: 9999
+          example: "324"
+        country_code:
+          type: integer
+          minimum: 0
+          maximum: 999
+          example: "894"
+        reg_no:
+          type: string
+          maxLength: 12
+          example: "008408000860"
+        acc_no:
+          type: string
+          maxLength: 22
+          example: "00002662003796912"
+        acc_type:
+          type: string
+          maxLength: 10
+          example: "Servings"
+        branch_code:
+          type: integer
+          minimum: 0
+          maximum: 999999
+          example: "999"
+        bank_name:
+          type: string
+          maxLength: 22
+          example: "0002040974538467"
+        bank_code:
+          type: string
+          maxLength: 10
+          example: "20052"
+        reg_status:
+          type: string
+          maxLength: 10
+          example: "success"
+
+    Result:
+      type: object
+      properties:
+        code:
+          type: string
+          example: 200
+        status:
+          type: string
+          example: OK
+        error:
+          type: object
+          example: "error data"
+
+
+    UUIDv4Identifier:
+      pattern: '^[a-f0-9]{8}-[a-f0-9]{4}-4[a-f0-9]{3}-[89ab][a-f0-9]{3}-[a-f0-9]{12}$'
+      type: string
+      example: 97ed4827-7b6f-4491-a06f-b548d5a7512d
+
+
+  parameters:
+    XRequestID:
+      description: A UUIDv4 identifier for each API interaction. The intent of the header is to provide an identifier to use for technical support queries between systems.
+      name: X-Request-ID
+      in: header
+      schema:
+        $ref: '#/components/schemas/UUIDv4Identifier'
+      required: true
+
+    XCorrelationID:
+      description: Correlates HTTP requests between a client and server.
+      name: X-Correlation-ID
+      in: header
+      schema:
+        type: string
+      required: true
+
+    Authorization:
+      description: A JWT string with a username claims key.
+      name: Authorization
+      in: header
+      schema:
+        type: string
+        format: jwt
+      required: true
+
+
+  responses:
+    'CustomerRegistrationResponse':
+      description: 'OK'
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/CustomerRegistrationResponse'
+    '400BadRequest':
+      description: Bad Request
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/CustomerRegistrationResponse'
+
+    '401Unauthorized':
+      description: Unauthorized
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/CustomerRegistrationResponse'
+
+    '403Forbidden':
+      description: Forbidden
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/CustomerRegistrationResponse'
+
+    '405MethodNotAllowed':
+      description: Method Not Allowed
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/CustomerRegistrationResponse'
+
+    '500InternalServerError':
+      description: Internal Server Error
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/CustomerRegistrationResponse'
+
+    '503ServiceUnavailable':
+      description: Service Unavailable
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/CustomerRegistrationResponse'
+
+    '504GatewayTimeout':
+      description: Gateway Timeout
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/CustomerRegistrationResponse'
+
+    'defaultError':
+      description: Unexpected Error
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/CustomerRegistrationResponse'

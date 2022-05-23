@@ -1,0 +1,29 @@
+{
+  "data": {
+    "registration": {
+      "surname": "Ayo",
+      "name": "MTN",
+      "pro_code": 311553,
+      "Gender": "M",
+      "phone_no": "0000000000",
+      "date_of_birth": "12/07/1988",
+      "place_of_birth": "Johannesburg",
+      "sa_id_no": "",
+      "foreign_id_no": "8569857412589635",
+      "street_address_line": "Johannesburg str",
+      "street_suburb": "Johannesburg Four ways",
+      "street_city": "Johannesburg Four ways",
+      "local_date": 491161,
+      "local_time": 958003,
+      "capt_date": 958003,
+      "country_code": 889623,
+      "reg_no": "008408000860",
+      "acc_no": "00002662003796912",
+      "acc_type": "Servings",
+      "branch_code": 537460,
+      "bank_name": "0002040974538467",
+      "bank_code": "20052",
+      "reg_status": "pending"
+    }
+  }
+}

@@ -1,0 +1,48 @@
+{
+  "lastModifiedDate": 1653215932131,
+  "id": 1,
+  "surname": "Maganya",
+  "name": "Nicola",
+  "proCode": 311553,
+  "gender": "M",
+  "phoneNo": "0000000000",
+  "dateOfBirth": "12/07/1988",
+  "placeOfBirth": "Johannesburg",
+  "saIdNo": "3333333333333",
+  "foreignIdNo": "",
+  "streetAddressLine": "Johannesburg str",
+  "streetSuburb": "Johannesburg Four ways",
+  "streetCity": "Johannesburg Four ways",
+  "localDate": 491161,
+  "localTime": 958003,
+  "captDate": 958003,
+  "countryCode": 889623,
+  "regNo": "008408000860",
+  "accNo": "00002662003796912",
+  "accType": "Servings",
+  "branchCode": 537460,
+  "bankName": "0002040974538467",
+  "bankCode": "20052",
+  "regStatus": "Registered",
+  "createdDate": {
+    "offset": {
+      "totalSeconds": 7200,
+      "id": "+02:00",
+      "rules": {
+        "transitions": [],
+        "transitionRules": [],
+        "fixedOffset": true
+      }
+    },
+    "nano": 99493000,
+    "year": 2022,
+    "monthValue": 5,
+    "dayOfMonth": 22,
+    "hour": 12,
+    "minute": 38,
+    "second": 52,
+    "month": "MAY",
+    "dayOfWeek": "SUNDAY",
+    "dayOfYear": 142
+  }
+}
