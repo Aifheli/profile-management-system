@@ -1,29 +1,8 @@
 {
-  "headers": {
-    "Content-Type": [
-      "application/json"
-    ],
-    "X-Correlation-ID": [
-      "ayo0002514"
-    ]
-  },
-  "body": {
-    "id": 1,
-    "surname": "Maganya",
-    "name": "Junior",
-    "reg_no": "008408000860",
-    "sa_id_no": "3333333333333",
-    "foreign_id_no": ""
-  }
-}
-
-{
-  "body": {
-    "id": 1,
-    "surname": "Maganya",
-    "name": "Junior",
-    "reg_no": "008408000860",
-    "sa_id_no": "3333333333333",
-    "foreign_id_no": ""
-  }
+  "id": 2,
+  "surname": "Maganya",
+  "name": "Junior",
+  "reg_no": "008408000860",
+  "sa_id_no": "3333333333333",
+  "foreign_id_no": ""
 }
